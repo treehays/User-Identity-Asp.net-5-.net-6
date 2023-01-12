@@ -2,7 +2,7 @@
 
 namespace MVCWithIdentity.Models
 {
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser : ApplicationUser
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
