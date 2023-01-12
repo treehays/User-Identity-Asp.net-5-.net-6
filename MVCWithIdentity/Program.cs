@@ -17,9 +17,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+//builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+//    .AddEntityFrameworkStores<ApplicationDbContext>();
 
+
+//C:\Users\Abdul\source\repos\MVCWithIdentity\MVCWithIdentity\Areas\Identity\Pages\Account\Register.cshtml
 
 //Addede during modification
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
