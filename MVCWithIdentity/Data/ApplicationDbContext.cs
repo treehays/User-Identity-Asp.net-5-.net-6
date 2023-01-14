@@ -5,6 +5,9 @@ using MVCWithIdentity.Models;
 
 namespace MVCWithIdentity.Data
 {
+    /// <summary>
+    /// 004 inheriting from Identity Db contex
+    /// </summary>
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -12,7 +15,10 @@ namespace MVCWithIdentity.Data
         {
 
         }
-
+        /// <summary>
+        /// 001 For modifying Identity Table
+        /// </summary>
+        /// <param name="builder"></param>
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

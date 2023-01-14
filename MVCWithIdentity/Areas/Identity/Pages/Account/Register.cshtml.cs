@@ -99,13 +99,16 @@ namespace MVCWithIdentity.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
-
+            /// <summary>
+            /// 005 Adding More Entities
+            /// </summary>
             [Required]
             [Display(Name = "First Name")]
             public string FirstName { get; set; }
             [Required]
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
+            //public byte[] ProfilePicture { get; set; }
         }
 
 
@@ -133,20 +136,22 @@ namespace MVCWithIdentity.Areas.Identity.Pages.Account
 
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            /// 006  adding these properties and save it to the DB while
             if (ModelState.IsValid)
             {
                 var address = new MailAddress(Input.Email);
                 var userName = address.User;
-                var user1 = new ApplicationUser
+                var user = CreateUser();
+                user = new ApplicationUser
                 {
                     UserName = userName,
                     Email = Input.Email,
                     FirstName = Input.FirstName,
-                    LastName = Input.LastName
+                    LastName = Input.LastName,
+                    //ProfilePicture = Input.ProfilePicture
                 };
 
 
-                var user = CreateUser();
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);

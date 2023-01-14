@@ -23,6 +23,7 @@ namespace MVCWithIdentity.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger)
         {
@@ -88,6 +89,14 @@ namespace MVCWithIdentity.Areas.Identity.Pages.Account
             public bool RememberMe { get; set; }
         }
 
+
+        /// <summary>
+        /// 009 validating email
+        /// </summary>
+        /// <param name="emailaddress"></param>
+        /// <returns></returns>
+        /// 
+
         public bool IsValidEmail(string emailaddress)
         {
             try
@@ -126,9 +135,20 @@ namespace MVCWithIdentity.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                    // This doesn't count login failures towards account lockout
-                    // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                    var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                /// 010 Still verifyinmg passord
+                //var userName = Input.Email;
+                //if (IsValidEmail(Input.Email))
+                //{
+                //    var user = await _userManager.FindByEmailAsync(Input.Email);
+                //    if (user != null)
+                //    {
+                //        userName = user.UserName;
+                //    }
+                //}
+
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");

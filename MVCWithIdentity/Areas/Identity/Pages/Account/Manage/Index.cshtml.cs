@@ -69,6 +69,10 @@ namespace MVCWithIdentity.Areas.Identity.Pages.Account.Manage
             //[Phone]
             //[Display(Name = "Phone number")]
             //public string PhoneNumber { get; set; }
+            
+
+
+            /// 01 Must be uncomment later
             [Display(Name = "Profile Picture")]
             public byte[] ProfilePicture { get; set; }
         }
@@ -88,6 +92,7 @@ namespace MVCWithIdentity.Areas.Identity.Pages.Account.Manage
                 Username = userName,
                 FirstName = firstName,
                 LastName = lastName,
+                /// 02 must be added later
                 ProfilePicture = profilePicture
             };
 
