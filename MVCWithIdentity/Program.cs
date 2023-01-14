@@ -6,10 +6,6 @@ using MVCWithIdentity.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-//var connectionStringq = builder.Configuration.GetConnectionString("DefaultConnection");
-//builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//    options.UseSqlServer(connectionString));
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
@@ -21,15 +17,12 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
-//C:\Users\Abdul\source\repos\MVCWithIdentity\MVCWithIdentity\Areas\Identity\Pages\Account\Register.cshtml
-
-//Addede during modification
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddDefaultUI()
     .AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-builder.Services.AddControllersWithViews();//already there
+builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 
